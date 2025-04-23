@@ -27,3 +27,8 @@ jobs:
       run: dotnet restore ${{ env.solution-path }}
     - name: Build
       run: dotnet build ${{ env.solution-path }} --no-restore
+    - name: Archive Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: revit-addin-build
+        path: build
