@@ -26,4 +26,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore $env:solution-path
     - name: Build
-      run: dotnet build $env:solution-path --no-restore
+      run: dotnet build $solution-path --no-restore
