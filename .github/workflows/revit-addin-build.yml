@@ -23,23 +23,29 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+        
     - name: Restore dependencies
       run: dotnet restore ${{ env.solution-path }}
-    - name: Build
+      
+    - name: Build and Zip
       run: dotnet build ${{ env.solution-path }}
+           zip revit-addin.zip ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows
+      
     - name: Archive Build Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: revit-addin-build
-        path: ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows
+        path: revit-addin.zip
+        
     - name: List Files
       run: ls -R
+      
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         name: test-release
         tag_name: test-tag
         body: "release body test"
-        files: ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows/revit-addin-build.zip
+        files: revit-addin.zip
         make_latest: true
         token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
