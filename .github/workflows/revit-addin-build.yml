@@ -4,7 +4,7 @@
 name: Revit Addin Test Workflow
 
 env:
-  solution-path: TestSolution\TestSolution.sln
+  solution-path: ./TestSolution
 
 on:
   push:
