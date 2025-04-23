@@ -24,9 +24,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore ${{ env.solution-path }} -v
+      run: dotnet restore ${{ env.solution-path }} -v n
     - name: Build
-      run: dotnet build ${{ env.solution-path }} -v
+      run: dotnet build ${{ env.solution-path }} -v n
     - name: Archive Build Artifacts
       uses: actions/upload-artifact@v4
       with:
