@@ -31,7 +31,7 @@ jobs:
       run: dotnet build ${{ env.solution-path }}
 
     - name: Zip Build Files
-      run: zip revit-addin.zip ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows
+      run: Compress-Archive -Path ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows -Destination revit-addin.zip
       
     - name: Archive Build Artifacts
       uses: actions/upload-artifact@v4
