@@ -37,6 +37,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         name: test-release
+        tag_name: test-tag
         body: "release body test"
         files: ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows/revit-addin-build.zip
         make_latest: true
