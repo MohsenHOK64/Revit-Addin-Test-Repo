@@ -32,7 +32,8 @@ jobs:
       with:
         name: revit-addin-build
         path: ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows
-        run: ls -R
+    - name: List Files
+      run: ls -R
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
