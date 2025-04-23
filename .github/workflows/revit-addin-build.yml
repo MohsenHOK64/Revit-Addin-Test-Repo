@@ -3,6 +3,9 @@
 
 name: Revit Addin Test Workflow
 
+env:
+  solution-path: TestSolution\TestSolution.sln
+
 on:
   push:
     branches: [ "main" ]
@@ -21,6 +24,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore $env:solution-path
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build $env:solution-path --no-restore
