@@ -35,5 +35,5 @@ jobs:
     - name: Download Build Artifacts
       uses: actions/download-artifact@v4
       with:
-        name: test-download
+        name: revit-addin-build
         path: build
