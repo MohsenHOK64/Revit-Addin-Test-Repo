@@ -24,6 +24,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore $solution-path
+      run: dotnet restore "$solution-path"
     - name: Build
-      run: dotnet build $solution-path --no-restore
+      run: dotnet build "$solution-path" --no-restore
