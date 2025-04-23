@@ -1,47 +1,47 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
+# Name of the workflow
 name: Revit Addin Test Workflow
 
+# Triggers on when this workflow should run
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+# Setting an env variable
 env:
   solution-path: ./TestSolution
 
 jobs:
   build:
 
+# Setting up a windows environment
     runs-on: windows-latest
 
     steps:
+    # Checkout the code
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore ${{ env.solution-path }}
-      
+
+    # Building the project
     - name: Build Project
       run: dotnet build ${{ env.solution-path }}
-
+      
+    # Creating a .zip file of the build result
     - name: Zip Build Files
       run: Compress-Archive -Path ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows -Destination revit-addin.zip
       
-    - name: Archive Build Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: revit-addin-build
-        path: revit-addin.zip
-        
+    # For debug purposes, list all files
     - name: List Files
       run: ls -R
       
+    # Create the release
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
