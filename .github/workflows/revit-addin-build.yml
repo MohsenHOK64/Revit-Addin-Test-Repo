@@ -31,4 +31,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: revit-addin-build
-        path: build
+        path: ${{ env.solution-path }}/TestAddin/bin/Debug/net8.0-windows
